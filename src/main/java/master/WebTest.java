@@ -53,4 +53,23 @@ public class WebTest {
         assertTrue(errorMessage);
         driver.close();
     }
+
+    @Test
+    public void negativePasswordTest() {
+        WebDriver driver = new EdgeDriver();
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+
+        WebElement usernameEditBox = driver.findElement(By.name("username"));
+        WebElement passwordEditBox = driver.findElement(By.name("password"));
+        WebElement submitButton = driver.findElement(By.id("submit"));
+        boolean errorMessage = driver.getPageSource().contains("Your password is invalid!");
+
+        usernameEditBox.sendKeys("student");
+        passwordEditBox.sendKeys("incorrectPassword");
+
+        submitButton.click();
+
+        assertTrue(errorMessage);
+        driver.close();
+    }
 }
